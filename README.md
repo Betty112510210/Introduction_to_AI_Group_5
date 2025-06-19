@@ -33,31 +33,30 @@ pip install google-api-python-client langdetect emoji
 ### 📄 Usage: YouTube Comment Scraper
 Use the script below to retrieve up to 200 English YouTube comments and replies with emoji retained:
 
-ˋˋˋpython
+ ```python
 
 from googleapiclient.discovery import build
 from langdetect import detect
 import csv
 import time
 
-**Replace with your API key and target video ID**
-api_key = 'YOUR_YOUTUBE_API_KEY'
-video_id = 'YOUR_VIDEO_ID'
+api_key = 'YOUR_YOUTUBE_API_KEY' # Replace with your API key and target video ID
+video_id = 'YOUR_VIDEO_ID' # You could find it in the website of the video
 youtube = build('youtube', 'v3', developerKey=api_key)
 
-def clean_comment(text):
+def clean_comment(text): # clear irrelevent space but keep the emoji.
     text = text.replace('<br>', ' ')
     text = text.replace('\n', ' ')
     return text.strip()
 
-def is_english(text):
+def is_english(text): # scratch only English comments for better annalysis.
     try:
         temp = clean_comment(text)
         return detect(temp) == 'en'
     except:
         return False
 
-def get_top_related_comments(video_id, max_results=200):
+def get_top_related_comments(video_id, max_results=200): #scratch only 200 comments per video for diverse dataset
     results = []
     next_page_token = None
 
@@ -71,7 +70,7 @@ def get_top_related_comments(video_id, max_results=200):
             pageToken=next_page_token
         ).execute()
 
-        for item in response['items']:
+        for item in response['items']: # main comments
             comment = item['snippet']['topLevelComment']['snippet']
             author = comment.get('authorDisplayName', '')
             text = comment['textDisplay']
@@ -81,7 +80,7 @@ def get_top_related_comments(video_id, max_results=200):
                 cleaned = clean_comment(text)
                 results.append([author, cleaned, published_at, False])
 
-            if 'replies' in item:
+            if 'replies' in item: # reply comments
                 for reply in item['replies']['comments']:
                     r = reply['snippet']
                     reply_text = r['textDisplay']
