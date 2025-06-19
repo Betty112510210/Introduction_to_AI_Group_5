@@ -4,17 +4,22 @@ Emotion Analysis Using LLMs model
 
 ## Project Description
 
-[Enter a brief description of your project, including the data you used and the analytical methods you applied. Be sure to provide context for your project and explain why it is important.]
+Cyberbullying has become an unignorable issue with the rise of the internet, contributing to mental health problems, social hostility, and even retaliatory behavior. In addition to native speakers, language learners often misuse words when expressing their opinions, which can lead to misunderstandings or unintentionally harmful comments. Our model is designed to analyze YouTube user comments to determine whether they are emotionally charged or potentially abusive. It provides feedback and sentiment scores for comments before they are posted. The project collect data using the YouTube API and manual labeling, identifying harmful comments through classification, analysis, and deep learning techniques. Each comment is assigned a sentiment score ranging from -1 to 1, where lower scores indicate more negative or aggressive content. This tool is especially helpful for non-native English speakers to revise and improve their comments before sharing them online.
+
+This project analyzes YouTube comments using sentiment analysis and cyberbullying detection models, collecting over 6,000 YouTube comments as the raw dataset. Using a large language model (GPT-4o, which yielded the most consistent performance in our tests), we labeled comments into three sentiment categories: **negative, neutral, and positive.** A total of 3,000 comments, 1,000 from each category, were then selected to train our sentiment analysis model.
+
+To evaluate labeling strategies, we tested multiple prompting approaches by manually labelling 100 sample comments for comparison:
+
+- Direct sentiment classification
+- Contextual framing for cyberbullying detection
+- Contextual framing for hate speech detection
+- Fine-tuned variants with guided instruction
 
 ## Getting Started
 
-[Provide instructions on how to get started with your project, including any necessary software or data. Include installation instructions and any prerequisites or dependencies that are required.]
+### Step1: Youtube Comments Fetching
 
-This project analyzes YouTube comments using sentiment analysis and cyberbullying detection models. It includes a script to fetch and clean comments (with emoji preserved), filter for English content, and export the data for further analysis using LLMs or deep learning models.
-
-### Youtube Comments Fetching
-
-### Step1: 📦 Prerequisites
+### 📦 Prerequisites
 Please make sure you have the following:
 
 - Python 3.8 or above
@@ -25,7 +30,7 @@ Please make sure you have the following:
 pip install google-api-python-client langdetect emoji
  ```
 
-### Step2: 🔑 API Setup
+### 🔑 API Setup
 - Go to Google Cloud Console, create a project and enable YouTube Data API v3.
 - Generate an API key.
 - Store the key securely (e.g., in an environment variable or config file. **Do not hardcode your key directly into public scripts.**)
@@ -119,6 +124,13 @@ The output is a CSV file containing:
 - Comment: Cleaned text (emoji preserved)
 - PublishedAt: Timestamp
 - IsReply: Whether the comment is a reply
+
+### Step2: Finetune LLM Model
+
+### Step3: Comments Sentiment Label with API
+
+### Step4: Structure Analysis Model
+
 ## File Structure
 
 [Describe the file structure of your project, including how the files are organized and what each file contains. Be sure to explain the purpose of each file and how they are related to one another.]
@@ -133,12 +145,40 @@ The output is a CSV file containing:
 
 ## Contributors
 
-[List the contributors to your project and describe their roles and responsibilities.]
+| Avatar | Name | Role(s) |
+|--------|------|---------|
+| <img src="https://github.com/liangli-liu.png" width="40"/> | [柳亮力 Liang-Li Liu](https://github.com/liangli-liu) | Project manager, program writer, analysis model structure |
+| <img src="https://github.com/Changtzuan.png" width="40"/> | [張子安 Andy Chang](https://github.com/Changtzuan) | Project manager, program writer, data collecting, data mining |
+| <img src="https://github.com/Betty112510210.png" width="40"/> | [陳郁宣 Yuhsuan Chen](https://github.com/Betty112510210) | Project manager, program writer, finetuning, presentation visualizer |
+
 
 ## Acknowledgments
 
-[Thank any individuals or organizations who provided support or assistance during your project, including funding sources or data providers.]
+We would like to express our sincere gratitude to **Professor Pien** for the invaluable guidance and support throughout the development of this project. His expertise greatly contributed to shaping our research direction and refining the design of our sentiment analysis framework.
+
+We also acknowledge the use of the following resources:
+
+- **YouTube Data API v3**, for providing access to public comment data used in our dataset.
+- **OpenAI GPT-4o (via API access)**, for assisting in large-scale comment labelling and sentiment classification.
+
 
 ## References
 
-[List any references or resources that you used during your project, including data sources, analytical methods, and tools.]
+This project was built using a variety of tools, libraries, and data sources:
+
+### 🧰 Programming Languages & Libraries
+- **Python** – Main language for data collection, processing, and model development
+- **Google API Client for Python** – To access YouTube Data API v3
+- **langdetect** – For language identification
+- **emoji** – For emoji-preserving comment processing
+- **OpenAI GPT-4o API** – For comment labeling and LLM-based sentiment evaluation
+- **R (dplyr)** – Used during early stages for data wrangling and cleaning
+
+### 📊 Data Sources
+- **YouTube Comments** – Collected via YouTube Data API v3  
+
+### 🧪 Analytical Methods
+- **LLM Prompt Engineering** – Comparing direct sentiment labeling with hate speech and cyberbullying contextual prompts
+- **Manual vs. Automated Label Comparison** – For accuracy benchmarking
+
+
