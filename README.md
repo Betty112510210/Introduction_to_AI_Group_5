@@ -141,7 +141,7 @@ The output is a CSV file containing:
 
 ## Results
 
-[Provide a summary of your findings and conclusions, including any recommendations or implications for future research. Be sure to explain how your results address your research question or problem statement.]
+Due to the low accuracy in detecting hatred, cyberbullying, and sentimental comments—initially yielding 34%, 67%, and 89% under evaluations involving mixed emotions and negative speech—we shifted from intent-based labeling to sentiment-based labeling. Using prompts such as “You are a professional comments analyst, please evaluate the following YouTube comments and identify hatred (cyberbullying and sentimental) content,” results remained inconsistent. Manual labeling allowed us to better differentiate among hateful, cyberbullying, and general sentiment comments. Importantly, not all negative comments contain cyberbullying elements; “sad” comments, often non-aggressive, were filtered separately. Users were also reminded to clarify emotional expressions to avoid political misclassification. Additionally, we extracted 100 negative samples for manual relabeling, and after processing them with a large language model (LLM), accuracy improved to 89%.
 
 ## Contributors
 
