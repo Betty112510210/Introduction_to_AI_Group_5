@@ -13,7 +13,6 @@ To evaluate labeling strategies, we tested multiple prompting approaches by manu
 - Direct sentiment classification
 - Contextual framing for cyberbullying detection
 - Contextual framing for hate speech detection
-- Fine-tuned variants with guided instruction
 
 ## Getting Started
 
@@ -125,11 +124,10 @@ The output is a CSV file containing:
 - PublishedAt: Timestamp
 - IsReply: Whether the comment is a reply
 
-### Step2: Finetune LLM Model
+### Step2: Comments Sentiment Label with API
 
-### Step3: Comments Sentiment Label with API
+### Step3: Structure Analysis Model
 
-### Step4: Structure Analysis Model
 
 ## File Structure
 
