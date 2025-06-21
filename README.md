@@ -126,6 +126,104 @@ The output is a CSV file containing:
 
 ### Step2: Comments Sentiment Label with API
 
+### 📦 Prerequisites
+Please make sure the following packages are installed in your environment:
+ ```python
+pip install openai pandas tqdm
+ ```
+This script is designed to run on Google Colab or local environments with access to OpenAI API and CSV-based comment data.
+
+### 🔑 API Setup
+Sign up for access to the OpenAI API at https://platform.openai.com
+
+Generate your secret API key
+
+Replace the following line in your script with your own key (do not upload your key to public repositories):
+ ```python
+client = OpenAI(api_key="your-api-key-here")
+ ```
+
+### 🧠 Prompt Engineering
+To evaluate the labeling quality of GPT-4o, we designed specialized prompts for different tasks. Rather than relying on minimal instructions, each prompt embeds context, definitions, and examples to simulate expert human judgment.
+
+1. Sentiment Classification Prompt (Label Accuracy:89%)
+Model is asked to classify YouTube comments into **positive, neutral, or negative** with the awareness of internet slang, tone and emoji:
+ ```python
+prompt= f"""
+請參考 YouTube 留言與網路流行用字，
+你是專業的網路評論分析師，
+判斷以下留言的情緒，只回覆一個詞：
+positive、neutral 或 negative。
+留言：{comment}
+"""
+ ```
+
+2-1. Hate Speech Detection Prompt (Label Accuracy:65%)
+Includes a formal definition of hate speech (based on identity-based attacks and social harm) and asks for binary judgment:
+ ```python
+prompt= f"""
+你是一位專業的網路評論分析師，熟悉 YouTube 留言與網路用語。
+
+仇恨言論（Hate speech）的定義如下：
+仇恨言論是指攻擊、貶低、歧視或煽動對特定個人或群體的敵意言論，
+特別是針對其種族、性別、宗教、性取向、身心障礙、國籍等身份。
+這些言論可能帶有人身攻擊、激起仇恨、煽動暴力或社會對立，
+並可能引發閱讀者的負面情緒或社會影響。
+
+請你根據這個定義，判斷下列留言是否屬於仇恨言論。
+請只回答「會」或「不會」，不要補充任何說明或理由。
+
+留言：
+{comment}
+"""
+ ```
+
+2-2 Hate Speech Detection Prompt without discription (Label Accuracy: 34%)
+Model is asked to classify whether YouTube comments invovled hatred speech with the awareness of internet slang, tone and emoji and no context provided: 
+ ```python
+prompt= f"""
+你是一位專業的網路評論分析師，熟悉 YouTube 留言與網路用語。
+請參考 YouTube 留言與網路流行用字，
+你是專業的網路評論分析師，
+判斷以下留言是否可能造成仇恨言論（Hate speech），
+只回覆一個詞：會、不會。
+留言：{comment}
+"""
+ ```
+
+3-1. Cyberbullying Detection Prompt (Label Accuracy:76%)
+Provides contextual examples of sarcasm, group mockery, and verbal abuse, asking whether a comment qualifies as cyberbullying:
+ ```python
+prompt= f"""
+你是一位熟悉社群媒體與網路文化的評論分析師。
+
+網路霸凌是指透過文字、語氣、表情、諷刺等形式，在網路上攻擊、羞辱、
+貶低、孤立、排擠或嘲笑某人。這些言論可能不是直接罵人，
+卻仍造成他人情緒傷害、引發對特定個人的敵意或群體排擠。
+
+- 冷嘲熱諷或語帶攻擊（例如：「好棒棒喔」「真有你的，出來丟臉」）
+- 貶低外貌、智商、行為（例如：「看他那德行就知道了」「腦袋有問題吧」）
+- 侮辱、攻擊、群嘲（例如：「他這種人活該被罵」「大家都知道他很爛」）
+- 用笑話或嘲諷語氣掩飾攻擊意圖
+
+請根據上述定義，判斷以下留言是否屬於網路霸凌。
+請只回答「會」或「不會」，不要補充理由或其他文字。
+
+留言：
+{comment}
+"""
+ ```
+
+3-2 CyberBullying Detection Prompt without discription
+Model is asked to classify whether YouTube comments invovled cyberbullying content with the awareness of internet slang, tone and emoji and no context provided: (Accuracy: 67%)
+ ```python
+prompt= f"""
+你是一位熟悉社群媒體與網路文化的評論分析師。
+請參考 YouTube 留言與網路用語，你是專業的網路評論分析師，判斷以下留言是否可能構成網路霸凌（Cyberbullying），例如冷嘲熱諷、群體攻擊、羞辱或造成情緒傷害。只回覆一個詞：「會」或「不會」。
+留言：{comment}
+"""
+ ```
+
 ### Step3: Structure Analysis Model
 
 
