@@ -19,7 +19,7 @@ import time
 import re
 
 # YouTube API 設定
-api_key = 'your_api_key'  # ← 請換成你的 API 金鑰
+api_key = 'your_api_key'  # ← 請換成你的 API
 video_id = 'your_youtube_ID'
 youtube = build('youtube', 'v3', developerKey=api_key)
 
