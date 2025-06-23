@@ -238,7 +238,34 @@ prompt= f"""
 
 ## Analysis
 
-[Describe your analysis methods and include any visualizations or graphics that you used to present your findings. Explain the insights that you gained from your analysis and how they relate to your research question or problem statement.]
+To evaluate how language and tone contribute to vervbal hostility, we conducted a multi-phase analysis combining LLM-based labeling, manual annotation, and performance comparison between different prompt strategies. Our core method was sentiment classification, which proved more reliable and consistent than direct hate speech or cyberbullying detection prompts.
+
+We labeled 6,000 YouTube comments using GPT-4o and selected 3000 of them, 1000 per class (positive, neutral, negative) for thorugh training and evaluation. Among all tested approaches, direct sentiment classification achieved the highest alignment with human labelling (89%), compared to 76% for cyberbullying prompts with context and 65% for hate speech prompts with context.
+
+### 🔍 Sadness Detection: A Critical Distinction
+During the labeling process, we discovered that not all negative comments were harmful. Some were expressions of personal sadness or frustration, rather than aggression. To avoid misclassifying these as abusive, we implemented an additional step to distinguish sad emotional content within the negative category.
+
+![sentimental analysis   on youtube comment (59 4 x 84 1 公分)](https://github.com/user-attachments/assets/5c3074c9-bcac-4c12-bfe3-0ffef60020a1)
+Figure 1: Comments classified as sad were excluded from moderation flags and instead received comfort-oriented feedback—supportive messages that encourage thoughtful communication rather than punishment. This design promotes a more empathetic environment, especially for emotionally vulnerable or non-native users.
+
+
+
+### 💡 Key Process
+By differentiating emotional expression from aggression, our system addresses key research questions:
+
+How can AI moderate online discourse without misjudging emotional intent?
+![Intro to ai proposal](https://github.com/user-attachments/assets/b4528263-4ab0-4916-ba24-0256197ca46f)
+Figure 2: This structure ensures that moderation is both accurate and emotionally aware, helping to prevent unintended harm while supporting constructive expression—particularly for non-native English speakers. Our findings emphasize that contextual sentiment understanding is essential for fair, helpful, and socially sensitive comment moderation.
+
+1. Comment Input – A user-submitted YouTube comment enters the system.
+2. Sentiment Classification – The comment is categorized as positive, neutral, or negative.
+3. Negative Comment Evaluation – Negative comments are further distinguished as sad or bullying.
+4. Feedback Generation – Based on the analysis, the system returns one of three feedback types:
+- No change (positive/neutral)
+- Supportive message (sad)
+- Warning or suggestion (bullying)
+5. User Decision – The user receives the feedback before posting and can choose to revise or proceed.
+
 
 ## Results
 
