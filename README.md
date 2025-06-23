@@ -140,7 +140,7 @@ Generate your secret API key
 
 Replace the following line in your script with your own key (do not upload your key to public repositories):
  ```python
-client = OpenAI(api_key="your-api-key-here")
+client = OpenAI(api_key="your-api-key")
  ```
 
 ### 🧠 Prompt Engineering
@@ -214,8 +214,8 @@ prompt= f"""
 """
  ```
 
-3-2 CyberBullying Detection Prompt without discription
-Model is asked to classify whether YouTube comments invovled cyberbullying content with the awareness of internet slang, tone and emoji and no context provided: (Accuracy: 67%)
+3-2 CyberBullying Detection Prompt without discription (Label Accuracy: 67%)
+Model is asked to classify whether YouTube comments invovled cyberbullying content with the awareness of internet slang, tone and emoji and no context provided: 
  ```python
 prompt= f"""
 你是一位熟悉社群媒體與網路文化的評論分析師。
