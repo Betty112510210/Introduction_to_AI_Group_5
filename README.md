@@ -38,9 +38,7 @@ pip install google-api-python-client langdetect emoji
 
 We provide a standalone script to collect up to 200 English YouTube comments and replies (with emoji retained) from any public video using the YouTube Data API.
 
-📄 Full script: [`scripts/youtube_api_scratch.py`](scripts/youtube_api_scratch.py)
-
-🔧 How to Use
+📄 Full script: [`youtube_api_scratch.py`](youtube_api_scratch.py)
 
 ```python
 python scripts/youtube_scraper.py
