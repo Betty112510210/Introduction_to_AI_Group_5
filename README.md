@@ -72,7 +72,7 @@ client = OpenAI(api_key="your-api-key")
  ```
 
 ### 🧠 Prompt Engineering
-To evaluate the labeling quality of GPT-4o, we designed different prompts for the tasks. Both with minimal instructions or context, definitions, and examples embedded to simulate expert human judgment.
+To evaluate the labeling quality of GPT-4o, we designed different prompts for the tasks. Onw with minimal instructions or context as resoning prompts and the other simple request to test the performance of LLM.
 
 1. Sentiment Classification Prompt (Label Accuracy:89%)
 
@@ -166,9 +166,7 @@ prompt= f"""
 
 ## Analysis
 
-To evaluate how language and tone contribute to vervbal hostility, we conducted a multi-phase analysis combining LLM-based labeling, manual annotation, and performance comparison between different prompt strategies. Our core method was sentiment classification, which proved more reliable and consistent than direct hate speech or cyberbullying detection prompts.
-
-We labeled 6,000 YouTube comments using GPT-4o and selected 3000 of them, 1000 per class (positive, neutral, negative) for thorugh training and evaluation. Among all tested approaches, direct sentiment classification achieved the highest alignment with human labelling (89%), compared to 76% for cyberbullying prompts with context and 65% for hate speech prompts with context.
+To evaluate how language and tone contribute to verbal hostility, we conducted a multi-phase analysis combining LLM-based labeling, manual annotation, and performance comparison between different prompt strategies. We labeled 6,000 YouTube comments using GPT-4o and selected 3000 of them, 1000 per class (positive, neutral, negative) for thorugh training and evaluation. Among all tested approaches, **direct sentiment classification** achieved the highest alignment with human labelling (89%), compared to 76% for cyberbullying prompts with context and 65% for hate speech prompts with context.
 
 ### 🔍 Sadness Detection: A Critical Distinction
 During the labeling process, we discovered that not all negative comments were harmful. Some were expressions of personal sadness or frustration, rather than aggression. To avoid misclassifying these as abusive, we implemented an additional step to distinguish sad emotional content within the negative category.
@@ -176,14 +174,12 @@ During the labeling process, we discovered that not all negative comments were h
 ![sentimental analysis   on youtube comment (59 4 x 84 1 公分)](https://github.com/user-attachments/assets/5c3074c9-bcac-4c12-bfe3-0ffef60020a1)
 Figure 1: Comments classified as sad were excluded from moderation flags and instead received comfort-oriented feedback—supportive messages that encourage thoughtful communication rather than punishment. This design promotes a more empathetic environment, especially for emotionally vulnerable or non-native users.
 
-
-
 ### 💡 Key Process
 By differentiating emotional expression from aggression, our system addresses key research questions:
-
 How can AI moderate online discourse without misjudging emotional intent?
+
 ![Intro to ai proposal](https://github.com/user-attachments/assets/b4528263-4ab0-4916-ba24-0256197ca46f)
-Figure 2: This structure ensures that moderation is both accurate and emotionally aware, helping to prevent unintended harm while supporting constructive expression—particularly for non-native English speakers. Our findings emphasize that contextual sentiment understanding is essential for fair, helpful, and socially sensitive comment moderation.
+Figure 2: This structure ensures that moderation is both accurate and emotionally aware, helping to prevent unintended harm while supporting constructive expression particularly for non-native English speakers. Our findings emphasize that contextual sentiment understanding is essential for fair and socially sensitive comment moderation.
 
 1. Comment Input – A user-submitted YouTube comment enters the system.
 2. Sentiment Classification – The comment is categorized as positive, neutral, or negative.
@@ -197,7 +193,22 @@ Figure 2: This structure ensures that moderation is both accurate and emotionall
 
 ## Results
 
-Due to the low accuracy in detecting hatred, cyberbullying, and sentimental comments—initially yielding 34%, 67%, and 89% under evaluations involving mixed emotions and negative speech—we shifted from intent-based labeling to sentiment-based labeling. Using prompts such as “You are a professional comments analyst, please evaluate the following YouTube comments and identify hatred (cyberbullying and sentimental) content,” results remained inconsistent. Manual labeling allowed us to better differentiate among hateful, cyberbullying, and general sentiment comments. Importantly, not all negative comments contain cyberbullying elements; “sad” comments, often non-aggressive, were filtered separately. Users were also reminded to clarify emotional expressions to avoid political misclassification. Additionally, we extracted 100 negative samples for manual relabeling, and after processing them with a large language model (LLM), accuracy improved to 89%.
+### 🧠 Ultimate Model
+After testing multiple prompts, including hate speech detection, cyberbullying identification as well as direct sentiment classification, we found that **sentiment-based prompts** yielded the most reliable results. When evaluated against a manually labeled dataset of 100 comments, prompt accuracy was 34% for hate speech, 67% for cyberbullying, and 89% for sentiment classification. Though providing context for cyberbullying and hatred speech in the resoning prompt, the accuracy only raised to 76% for cyberbullying label and 65% for hatred speech labelling; thus, **direct sentiment-based label** was choosed as our method.
+
+As a result, we adopted sentiment-based labeling using GPT-4o as our primary approach. Based on manual inspection of negative comments, we identified a recurring subset of emotionally vulnerable `sad` comments. These were manually separated and treated differently in our response strategy: instead of moderation warning, they received comfort-oriented feedback.
+
+This dual-path design helped avoid over-policing emotional expression while still identifying genuinely harmful content. Using the sentiment-based approach that ultimately achieved the highest alignment with human labels; meanwhile, providing a more empathetic, user-sensitive experience for non-native English speakers.
+
+![IMG_1607](https://github.com/user-attachments/assets/f472f191-9490-4ee8-9afd-4668eecec561)
+Figure 3: Ultimate model output.
+
+### 🔭 Future Directions
+While GPT-4o demonstrated strong performance in sentiment-based labeling, we observed limitations when handling ambiguous specific expressions. To further improve accuracy, particularly for borderline cases such as sarcastic bullying or ironical hate speech, we plan to finetune a language model based on our manually labeled dataset.
+
+Our future goal is to train a task-specific model that better reflects the nuanced definitions of cyberbullying and emotional vulnerability in real-world comments. This fine-tuned LLM would serve as a better classifier for raw comment input and feedback generation, improving consistency, and adapting more effectively to user context.
+
+We believe this next step will allow us to deliver more robust, explainable, and context-aware moderation tools  useful for educational platforms or multilingual digital communities.
 
 ## Contributors
 
@@ -228,7 +239,7 @@ This project was built using a variety of tools, libraries, and data sources:
 - **langdetect** – For language identification
 - **emoji** – For emoji-preserving comment processing
 - **OpenAI GPT-4o API** – For comment labeling and LLM-based sentiment evaluation
-- **R (dplyr)** – Used during early stages for data wrangling and cleaning
+- **R (`dplyr`)** – Used during early stages for data wrangling and cleaning
 
 ### 📊 Data Sources
 - **YouTube Comments** – Collected via YouTube Data API v3  
