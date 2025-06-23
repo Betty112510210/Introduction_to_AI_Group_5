@@ -214,10 +214,9 @@ We believe this next step will allow us to deliver more robust, explainable, and
 
 | Avatar | Name | Role(s) |
 |--------|------|---------|
-| <img src="https://github.com/liangli-liu.png" width="40"/> | [柳亮力 Liang-Li Liu](https://github.com/liangli-liu) | Project manager, program writer, analysis model structure |
+| <img src="https://github.com/Jessie111508021.png" width="40"/> | [柳亮力 Liang-Li Liu](https://github.com/Jessie111508021) | Project manager, program writer, analysis model structure |
 | <img src="https://github.com/Changtzuan.png" width="40"/> | [張子安 Andy Chang](https://github.com/Changtzuan) | Project manager, program writer, data collecting, data mining |
 | <img src="https://github.com/Betty112510210.png" width="40"/> | [陳郁宣 Yuhsuan Chen](https://github.com/Betty112510210) | Project manager, program writer, finetuning, presentation visualizer |
-
 
 ## Acknowledgments
 
