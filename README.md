@@ -147,6 +147,7 @@ client = OpenAI(api_key="your-api-key")
 To evaluate the labeling quality of GPT-4o, we designed different prompts for the tasks. Both with minimal instructions or context, definitions, and examples embedded to simulate expert human judgment.
 
 1. Sentiment Classification Prompt (Label Accuracy:89%)
+
 Model is asked to classify YouTube comments into **positive, neutral, or negative** with the awareness of internet slang, tone and emoji:
  ```python
 prompt= f"""
@@ -159,6 +160,7 @@ positive、neutral 或 negative。
  ```
 
 2-1. Hate Speech Detection Prompt (Label Accuracy:65%)
+
 Includes a **formal definition of hatred speech** (based on identity-based attacks and social harm) and asks for binary judgment:
  ```python
 prompt= f"""
@@ -179,6 +181,7 @@ prompt= f"""
  ```
 
 2-2 Hate Speech Detection Prompt without discription (Label Accuracy: 34%)
+
 Model is asked to classify whether YouTube comments **invovled hatred speech** with the awareness of internet slang, tone and emoji and no context provided: 
  ```python
 prompt= f"""
@@ -192,6 +195,7 @@ prompt= f"""
  ```
 
 3-1. Cyberbullying Detection Prompt (Label Accuracy:76%)
+
 Includes a **formal definition of cyberbullying** (based on contextual examples of sarcasm, group mockery, and verbal abuse) and asks for binary judgment:
  ```python
 prompt= f"""
@@ -215,6 +219,7 @@ prompt= f"""
  ```
 
 3-2 CyberBullying Detection Prompt without discription (Label Accuracy: 67%)
+
 Model is asked to classify whether YouTube comments **invovled cyberbullying** content with the awareness of internet slang, tone and emoji and no context provided: 
  ```python
 prompt= f"""
