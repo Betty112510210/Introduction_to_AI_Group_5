@@ -138,13 +138,13 @@ Sign up for access to the OpenAI API at https://platform.openai.com
 
 Generate your secret API key
 
-Replace the following line in your script with your own key (do not upload your key to public repositories):
+Replace the following line in your script with your own key (**Do not hardcode your key directly into public scripts.**):
  ```python
 client = OpenAI(api_key="your-api-key")
  ```
 
 ### 🧠 Prompt Engineering
-To evaluate the labeling quality of GPT-4o, we designed specialized prompts for different tasks. Rather than relying on minimal instructions, each prompt embeds context, definitions, and examples to simulate expert human judgment.
+To evaluate the labeling quality of GPT-4o, we designed different prompts for the tasks. Both with minimal instructions or context, definitions, and examples embedded to simulate expert human judgment.
 
 1. Sentiment Classification Prompt (Label Accuracy:89%)
 Model is asked to classify YouTube comments into **positive, neutral, or negative** with the awareness of internet slang, tone and emoji:
@@ -159,7 +159,7 @@ positive、neutral 或 negative。
  ```
 
 2-1. Hate Speech Detection Prompt (Label Accuracy:65%)
-Includes a formal definition of hate speech (based on identity-based attacks and social harm) and asks for binary judgment:
+Includes a **formal definition of hatred speech** (based on identity-based attacks and social harm) and asks for binary judgment:
  ```python
 prompt= f"""
 你是一位專業的網路評論分析師，熟悉 YouTube 留言與網路用語。
@@ -179,7 +179,7 @@ prompt= f"""
  ```
 
 2-2 Hate Speech Detection Prompt without discription (Label Accuracy: 34%)
-Model is asked to classify whether YouTube comments invovled hatred speech with the awareness of internet slang, tone and emoji and no context provided: 
+Model is asked to classify whether YouTube comments **invovled hatred speech** with the awareness of internet slang, tone and emoji and no context provided: 
  ```python
 prompt= f"""
 你是一位專業的網路評論分析師，熟悉 YouTube 留言與網路用語。
@@ -192,7 +192,7 @@ prompt= f"""
  ```
 
 3-1. Cyberbullying Detection Prompt (Label Accuracy:76%)
-Provides contextual examples of sarcasm, group mockery, and verbal abuse, asking whether a comment qualifies as cyberbullying:
+Includes a **formal definition of cyberbullying** (based on contextual examples of sarcasm, group mockery, and verbal abuse) and asks for binary judgment:
  ```python
 prompt= f"""
 你是一位熟悉社群媒體與網路文化的評論分析師。
@@ -215,7 +215,7 @@ prompt= f"""
  ```
 
 3-2 CyberBullying Detection Prompt without discription (Label Accuracy: 67%)
-Model is asked to classify whether YouTube comments invovled cyberbullying content with the awareness of internet slang, tone and emoji and no context provided: 
+Model is asked to classify whether YouTube comments **invovled cyberbullying** content with the awareness of internet slang, tone and emoji and no context provided: 
  ```python
 prompt= f"""
 你是一位熟悉社群媒體與網路文化的評論分析師。
