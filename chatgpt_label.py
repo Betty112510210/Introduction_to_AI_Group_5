@@ -13,28 +13,13 @@ import pandas as pd
 import openai
 import random
 import time
-
+from tqdm import tqdm
+from openai import OpenAI
 from google.colab import drive
 drive.mount('/content/drive')
 
-"""隨機抽100筆"""
-
-input_path = "/content/drive/MyDrive/original_data/@entertain_data.csv"
-df = pd.read_csv(input_path, encoding='utf-8')
-
-sample_df = df.sample(n=100, random_state=42).reset_index(drop=True)
-
-output_path = "/content/drive/MyDrive/sample_100.csv"
-sample_df.to_csv(output_path, index=False, encoding='utf-8-sig')
-
-print(f"✅ 隨機抽取100筆已存到：{output_path}")
 
 """仇恨標註、引導式思考"""
-
-import pandas as pd
-from tqdm import tqdm
-import time
-from openai import OpenAI
 
 client = OpenAI(api_key="your_api_key")
 
@@ -87,17 +72,11 @@ def process_file(input_path, output_path):
     df.to_csv(output_path, index=False, encoding='utf-8-sig')
     print(f"✅ 分析完成並儲存結果至：{output_path}")
 
-# 呼叫範例
 input_path = "/content/drive/MyDrive/negative_sample.csv"
 output_path = "/content/drive/MyDrive/negative_sample_bully.csv"
 process_file(input_path, output_path)
 
 """仇恨標註，無語境"""
-
-import pandas as pd
-from tqdm import tqdm
-import time
-from openai import OpenAI
 
 client = OpenAI(api_key="your_api_key")
 
@@ -143,17 +122,11 @@ def process_file(input_path, output_path):
     df.to_csv(output_path, index=False, encoding='utf-8-sig')
     print(f"✅ 分析完成並儲存結果至：{output_path}")
 
-# 呼叫範例
 input_path = "/content/drive/MyDrive/negative_sample.csv"
 output_path = "/content/drive/MyDrive/negative_sample_bully.csv"
 process_file(input_path, output_path)
 
 """霸凌標註，引導式思考"""
-
-import pandas as pd
-from tqdm import tqdm
-import time
-from openai import OpenAI
 
 client = OpenAI(api_key="your_api_key")
 
@@ -210,15 +183,11 @@ def process_file(input_path, output_path):
     df.to_csv(output_path, index=False, encoding='utf-8-sig')
     print(f"✅ 分析完成並儲存結果至：{output_path}")
 
-# 呼叫範例
 input_path = "/content/drive/MyDrive/negative_sample.csv"
 output_path = "/content/drive/MyDrive/negative_sample_bully.csv"
 process_file(input_path, output_path)
 
-import pandas as pd
-from tqdm import tqdm
-import time
-from openai import OpenAI
+"""霸凌標註"""
 
 client = OpenAI(api_key="your_api_key")
 
@@ -263,17 +232,11 @@ def process_file(input_path, output_path):
     df.to_csv(output_path, index=False, encoding='utf-8-sig')
     print(f"✅ 分析完成並儲存結果至：{output_path}")
 
-# 呼叫範例
 input_path = "/content/drive/MyDrive/negative_sample.csv"
 output_path = "/content/drive/MyDrive/negative_sample_bully.csv"
 process_file(input_path, output_path)
 
 """情緒標註"""
-
-import pandas as pd
-from tqdm import tqdm
-import time
-from openai import OpenAI
 
 client = OpenAI(api_key="your_api_key")
 
@@ -307,7 +270,6 @@ def process_file(input_path, output_path):
     df.to_csv(output_path, index=False, encoding='utf-8-sig')
     print(f"✅ 完成儲存：{output_path}")
 
-# 呼叫範例
 input_path = "/content/drive/MyDrive/original_data/@news_data.csv"
 output_path = "/content/drive/MyDrive/label_data/@news_data_label.csv"
 process_file(input_path, output_path)
