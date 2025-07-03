@@ -206,6 +206,7 @@ The output will display below with sentiment evaluation and, if necessary, rewri
 ## File Structure
 
 ### 📁 Full Structure
+ ```python
 Introduction_to_AI_Group_5/
 ├── data/                            # All intermediate and labeled datasets
 │   ├── top_200_english_with_emoji.csv     # Raw scraped comments from YouTube
@@ -220,7 +221,7 @@ Introduction_to_AI_Group_5/
 ├── sentiment_model.py              # Step 3: Real-time comment classification + rewrite via Gradio
 ├── result_analysis.ipynb           # Step 4: Prompt accuracy comparison and evaluation visuals
 └── README.md                       # Project overview, instructions, results
-
+ ```
 
 ### 🔗 Project Pipeline Overview
 | Stage                 | Script                    | Output                                         |
