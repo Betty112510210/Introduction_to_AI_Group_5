@@ -23,7 +23,7 @@ df = pd.read_csv(file_path)
 df = df[['Author', 'Comment', 'label']].copy()
 df['text'] = df['Author'].fillna('') + ": " + df['Comment']
 
-machine = OpenAI(api_key="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")
+machine = OpenAI(api_key="your_api_key")
 
 # Main function: sentiment analysis + rewriting suggestions
 def analyze_comment(comment):
