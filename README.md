@@ -158,7 +158,51 @@ prompt= f"""
  ```
 
 ### Step3: Structure Analysis Model
+In this stage, we built an interactive tool that provides real-time sentiment classification and comment rewriting suggestions using the OpenAI API and Gradio interface. This tool is designed to help users reflect on their language before posting a comment on YouTube.
 
+### 🔍 Functionality
+Given a user-submitted comment, the model will:
+
+- Classify the comment as positive, neutral, or negative
+- Return a sentiment score ranging from -1 (very negative) to 1 (very positive)
+- If the sentiment is negative, suggest a more neutral, respectful rewrite
+
+### ⚙️ Requirements
+Before running the tool, make sure to install the necessary packages:
+
+ ```python
+pip install openai gradio pandas
+ ```
+- Python 3.8 or above
+- An OpenAI API key (inserted as your_api_key)
+- CSV data file (3000_youtube_sentiment.csv) for offline testing or future fine-tuning
+
+### 🧪 Example Output
+Input:
+
+` “This video is ridiculous. I can’t believe people actually like it.” `
+
+Model Output:
+
+ ```python
+Classification: negative  
+Sentiment Score: -0.87  
+
+Suggested Rewrite:  
+"Personally, I didn’t find this video helpful, but I understand others may enjoy it."
+ ```
+
+### 💻 Running the Interface
+To launch the Gradio web app:
+
+ ```python
+python sentiment_model.py
+ ```
+You’ll see a text input box like:
+
+` “Please enter the YouTube comment you would like to post…” `
+
+The output will display below with sentiment evaluation and, if necessary, rewriting advice.
 
 ## File Structure
 
