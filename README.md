@@ -218,8 +218,8 @@ Introduction_to_AI_Group_5/
 │   └── model_process.png
 ├── youtube_api_scratch.py          # Step 1: Scrape YouTube comments
 ├── chatgpt_label.py                # Step 2: Generate GPT labels with various prompt types
-├── sentiment_model.py              # Step 3: Real-time comment classification + rewrite via Gradio
-├── result_analysis.ipynb           # Step 4: Prompt accuracy comparison and evaluation visuals
+├── sentiment_analysis_+_rewriting_suggestions.py             # Step 3: Real-time comment classification + rewrite via Gradio
+├── sentiment_analysis_+_rewriting_suggestions.py         # Step 4: Prompt accuracy comparison and evaluation visuals
 └── README.md                       # Project overview, instructions, results
  ```
 
@@ -228,8 +228,8 @@ Introduction_to_AI_Group_5/
 |----------------------|---------------------------|------------------------------------------------|
 | 1. YouTube Scraper   | `youtube_api_scratch.py`  | Raw comment data (`.csv`)                      |
 | 2. LLM Labeling      | `chatgpt_label.py`        | Labeled data using prompt-based methods        |
-| 3. Feedback Assistant| `sentiment_model.py`      | Real-time sentiment + rewriting tool           |
-| 4. Evaluation        | `result_analysis.ipynb`   | Accuracy comparison and prompt insights        |
+| 3. Feedback Assistant| `sentiment_analysis_+_rewriting_suggestions.py`      | Real-time sentiment + rewriting tool           |
+| 4. Evaluation        | `sentiment_analysis_+_rewriting_suggestions.py`   | Accuracy comparison and prompt insights        |
 
 ### 🔍 File Purpose Summary
 `youtube_api_scratch.py`
@@ -238,17 +238,14 @@ Retrieves YouTube comments using the YouTube Data API v3, filters English conten
 `chatgpt_label.py`
 Applies various prompt strategies with GPT-4o for sentiment, hate speech, and cyberbullying classification.
 
-`sentiment_model.py`
-Provides an interactive tool via Gradio for real-time sentiment analysis and rewrite suggestions for user comments.
-
-`result_analysis.ipynb`
-Compares manual and LLM labels, visualizes classification accuracy, and informs model selection.
-
 `sample_100.csv / sample_100_label.csv`
 Benchmark dataset for evaluating prompt performance.
 
 `negative_sample.csv / negative_sample_bully.csv`
 Refines the distinction between emotionally vulnerable (sad) and harmful (bullying) negative comments.
+
+`sentiment_analysis_+_rewriting_suggestions.py`
+Provides an interactive tool via Gradio for real-time sentiment analysis and rewrite suggestions for user comments.
 
 `images`
 Contains visuals like workflow diagrams for use in the README.
